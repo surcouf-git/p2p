@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<meta charset="UTF-8">
+	<head>
+		<title>Independant</title>
+		<style>
+			body {
+				background-color:grey;
+			}
+			.default_text_color {
+				color:white
+			}
+			.center {
+				text-align: center;
+			}
+			.error {
+				color: rgb(175, 34, 34);
+				font-size: 30px;
+			}
+			#generateOfferTextArea {
+				display: none;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="page1" class="center">
+			<h1>CHOIX DU SERVEUR STUN</h1>
+			<div class="default_text_color">
+				<div>
+					<button id="autoIP">AUTOMATIQUE</button><br>(utilisation d'un serveur tiers ex: stun.l.google.com)<br>
+				</div>
+				<div>
+					<p>Si vous connaissez un serveur STUN:</p>
+					<form id="formIP">
+						<input type="text" id="customIP" placeholder="stun:IP:PORT" required>
+						<input type="submit" value="soumettre">
+					</form>
+				</div>
+			</div>
+			<p id="onError" class="error"></p>
+		</div>
+
+		<div id="page2" class="center" style="display:none;">
+			<h1>INFORMATIONS DE CONNEXION</h1>
+			<div class="default_text_color">
+				<button id="generateOffer">GENERER UNE OFFRE</button><br>
+				<textarea id="generateOfferTextArea" rows="5" cols="50"></textarea>
+			</div>
+			<br>
+			<br>
+			<div class="default_text_color">
+				<button id="submitOffer">REPONDRE A UNE OFFRE</button><br>
+				<textarea id="submitOfferTextArea" rows="5" cols="50"></textarea>
+				<div id="submitAnswer" style="display: none;">
+					<p style="color: rgb(146, 39, 39);">TEXTE A ENVOYER AU PAIR</p>
+					<textarea id="answerTextArea" rows="5" cols="50" ></textarea>
+				</div>
+			</div>
+
+		</div>
+	</body>
+	
+	<script src="p2p.js"></script>
+</html>
