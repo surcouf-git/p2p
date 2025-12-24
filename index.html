@@ -17,7 +17,7 @@
 				color: rgb(175, 34, 34);
 				font-size: 30px;
 			}
-			#generateOfferTextArea {
+			#fullOfferTxtArea {
 				display: none;
 				margin: 0 auto;
 			}
@@ -39,20 +39,24 @@
 					</form>
 				</div>
 			</div>
-			<p id="onError" class="error"></p>
 		</div>
 
 		<div id="page2" class="center" style="display:none;">
 			<h1>INFORMATIONS DE CONNEXION</h1>
 			<div class="default_text_color">
-				<button id="generateOffer">GENERER UNE OFFRE</button><br>
-				<textarea id="generateOfferTextArea" rows="5" cols="50"></textarea>
+				<p>Copiez et envoyez ce texte à votre destinataire</p>
+				<button id="copyOffer" onclick="copyTxtButton()">COPIER</button><br>
+				<textarea id="fullOfferTxtArea" rows="5" cols="50"></textarea>
 			</div>
 			<br>
 			<br>
+
 			<div class="default_text_color">
-				<button id="submitOffer">REPONDRE A UNE OFFRE</button><br>
-				<textarea id="submitOfferTextArea" rows="5" cols="50"></textarea>
+				<p>Si quelqu'un vous a envoyé un texte, collez le ci dessous et appuyez sur 'ENREGISTRER'</p>
+				<button id="saveButton">ENREGISTRER</button><br>
+				<textarea id="peerOfferTxtArea" rows="5" cols="50"></textarea>
+				<p id="onError" class="error"></p>
+
 				<div id="submitAnswer" style="display: none;">
 					<p style="color: rgb(146, 39, 39);">TEXTE A ENVOYER AU PAIR</p>
 					<textarea id="answerTextArea" rows="5" cols="50" ></textarea>
