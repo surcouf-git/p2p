@@ -6,6 +6,7 @@ let Aside_stunServer = null;
 let Aside_offer = null;
 let Aside_candidates = [];
 let Aside_peerConnexion = null;
+let Aside_BsideOffer = null;
 
 function Aside_displayOffer(name) {
 	switchPage('main_page', 'Aside_offer');
@@ -29,19 +30,19 @@ function waitCandidatesAndDisplayOffer(peerConnexion) {
 }
 
 // aside save peer offer //
-document.getElementById("Aside_saveRemoteOfferBtn").addEventListener('click', async function(event) {
-	try {
-		const txt = document.getElementById("Aside_peerOfferTxtArea").value;
-		if (!txt) {
-			// display error
-			throw ("empty text area");
-		}
-		Aside_peerConnexion.setRemoteDescription(await JSON.parse(txt.offer));
-		console.log("aside: remote description saved");
-	} catch (error) {
-		console.error("aside: error on saving remote offer: ", error);
-	}
-});
+//document.getElementById("Aside_saveRemoteOfferBtn").addEventListener('click', async function(event) {
+//	try {
+//		const txt = document.getElementById("Aside_peerOfferTxtArea").value;
+//		if (!txt) {
+//			// display error
+//			throw ("empty text area");
+//		}
+//		Aside_peerConnexion.setRemoteDescription(await JSON.parse(txt.offer));
+//		console.log("aside: remote description saved");
+//	} catch (error) {
+//		console.error("aside: error on saving remote offer: ", error);
+//	}
+//});
 
 function createChannel(peerConnexion) {
 	return peerConnexion.createDataChannel("OGchan");
@@ -74,5 +75,19 @@ document.getElementById('autoIP').addEventListener('click', async function autoS
 	} catch (error) {
 		console.error("await error on A side: ", error);
 		// return a screen errror 
+	}
+});
+
+async function saveBsideAnswer() {
+	Aside_BsideOffer = await JSON.parse(document.getElementById("Aside_peerOfferTxtArea").value);
+	saveRemoteOffer(Aside_peerConnexion, Aside_BsideOffer.Bside_answer);
+}
+
+document.getElementById("Aside_saveRemoteOfferBtn").addEventListener('click', async function(event) {
+	try {
+		await saveBsideAnswer();
+		await saveRemoteCandidates(Aside_peerConnexion, Aside_BsideOffer.Bside_candidates);
+	} catch (error) {
+		console.error("aside: error: ", error);
 	}
 });
