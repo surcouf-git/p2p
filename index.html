@@ -17,54 +17,91 @@
 				color: rgb(175, 34, 34);
 				font-size: 30px;
 			}
-			#fullOfferTxtArea {
+			textarea {
+				margin: 0 auto;
+				width: 50ch;
+				height: 5em;
+			}
+			/*#fullOfferTxtArea {
 				display: none;
 				margin: 0 auto;
-			}
+			}*/
 		</style>
 	</head>
 
 	<body>
-		<div id="page1" class="center">
-			<h1>CHOIX DU SERVEUR STUN</h1>
-			<div class="default_text_color">
-				<div>
-					<button id="autoIP">AUTOMATIQUE</button><br>(utilisation d'un serveur tiers ex: stun.l.google.com)<br>
-				</div>
-				<div>
-					<p>Si vous connaissez un serveur STUN:</p>
-					<form id="formIP">
-						<input type="text" id="customIP" placeholder="stun:IP:PORT" required>
-						<input type="submit" value="soumettre">
-					</form>
-				</div>
-			</div>
-		</div>
 
-		<div id="page2" class="center" style="display:none;">
-			<h1>INFORMATIONS DE CONNEXION</h1>
+		<!-- BOTH SIDE MAIN PAGE -->
+		<div id="main_page" class="center default_text_color" style="display: block;">
+
+			<div>
+				<p>VOUS AVEZ RECU UN CODE:</p>
+				<button id="Bside_entryBtn">CLIQUEZ ICI</button>
+			</div>
+
+			<br>
+
+			<div>
+				<p>VOUS VOULEZ INITIER UNE CONNEXION: </p>
+				<p>(utilisation d'un serveur tiers ex: stun.l.google.com)</p>
+				<button id="autoIP">AUTOMATIQUE</button>
+
+				<p>VOUS CONNAISSEZ UN SERVEUR STUN:</p>
+				<form id="formIP">
+					<input type="text" id="customIP" placeholder="stun:IP:PORT" required>
+					<input type="submit" value="soumettre">
+				</form>
+			</div>
+
+		</div>
+		<!-- END BOTH SIDE MAIN PAGE -->
+
+		<!-- A SIDE -->
+		<div id="Aside_offer" class="center" style="display:none;">
+
 			<div class="default_text_color">
 				<p>Copiez et envoyez ce texte à votre destinataire</p>
-				<button id="copyOffer" onclick="copyTxtButton()">COPIER</button><br>
-				<textarea id="fullOfferTxtArea" rows="5" cols="50"></textarea>
+				<button id="Aside_copyOfferBtn" onclick="copyTxtButton('Aside_copyOfferTxtArea', 'Aside_copyOfferBtn')">COPIER</button><br>
+				<textarea id="Aside_copyOfferTxtArea"></textarea>
 			</div>
-			<br>
-			<br>
+
+			<br><br>
 
 			<div class="default_text_color">
-				<p>Si quelqu'un vous a envoyé un texte, collez le ci dessous et appuyez sur 'ENREGISTRER'</p>
-				<button id="saveButton">ENREGISTRER</button><br>
-				<textarea id="peerOfferTxtArea" rows="5" cols="50"></textarea>
+				<p>Quand vous recevrez un texte, collez le ci dessous et appuyez sur ENREGISTRER</p>
+				<button id="Aside_saveRemoteOfferBtn">ENREGISTRER</button><br>
+				<textarea id="Aside_peerOfferTxtArea"></textarea>
+
 				<p id="onError" class="error"></p>
 
 				<div id="submitAnswer" style="display: none;">
 					<p style="color: rgb(146, 39, 39);">TEXTE A ENVOYER AU PAIR</p>
-					<textarea id="answerTextArea" rows="5" cols="50" ></textarea>
+					<textarea id="answerTextArea"></textarea>
 				</div>
 			</div>
 
 		</div>
+		<!-- END A SIDE -->
+
+		<!-- B SIDE -->
+		<div id="Bside_entryDiv" class="center default_text_color" style="display: none;">
+			<p>Si quelqu'un vous a envoyé un texte, collez le ci dessous et appuyez sur 'SOUMETTRE'</p>
+			<button id="Bside_remoteOfferBtn">SOUMETTRE</button><br>
+			<textarea id="Bside_remoteOfferTxtArea"></textarea>
+
+			<!-- submission -->
+			<div id="Bside_offer" style="display: none;">
+				<p class="default_text_color">Copiez et envoyez ce texte à votre destinataire</p> <br>
+				<button id="Bside_copyOfferBtn" onclick="copyTxtButton('Bside_offerTxtArea', 'Bside_copyOfferBtn')">COPIER</button><br>
+				<textarea id="Bside_copyOfferTxtArea"></textarea>
+			</div>
+		</div>
+		<br><br>
+		<!-- END B SIDE -->
+
 	</body>
-	
-	<script src="p2p.js"></script>
+
+	<script src="a-side.js"></script>
+	<script src="b-side.js"></script>
+	<script src="global.js"></script>
 </html>
